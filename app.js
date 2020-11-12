@@ -21,7 +21,9 @@ app.use(async (ctx,next)=>{
     await next()
 })  
 const playlist=require('./controller/playlist')
+const swiper=require('./controller/swiper')
 router.use('/playlist',playlist.routes())
+router.use('/swiper',swiper.routes())
 app.use(router.routes())
 app.use(router.allowedMethods())
 

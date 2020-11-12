@@ -28,6 +28,15 @@ router.get('/getById', async (ctx, next) => {
     }
 })
 
+router.get('/del',async(ctx,next)=>{
+    const query = `db.collection('playlist').doc('${ctx.request.query.id}').remove()`
+    const res=await callCloudDB(ctx,'databasedelete',query)
+    ctx.body={
+        code:20000,
+        data:res.data
+    }
+})
+
 router.post('/updatePlaylist',async(ctx,next)=>{
     const params=ctx.request.body
     const query=`
@@ -44,5 +53,7 @@ router.post('/updatePlaylist',async(ctx,next)=>{
         data: res.data
     }
 })
+
+
 
 module.exports = router
